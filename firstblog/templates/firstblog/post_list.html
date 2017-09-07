@@ -7,8 +7,15 @@
             <h1><a href="">Abrar's Blog</a></h1>
         </div>
 
+{% for post in posts %}
+    <div>
+        <p>published: {{ post.published_date }}</p>
+        <h1><a href="">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
         <div>
-            <p>published: 09.06.2017, 12:14</p>
+            <p>{{posts}}</p>
             <h2><a href="">My Idol </a></h2>
             <p>Cristiano Ronaldo- CR7
                 Best in the World</p>
