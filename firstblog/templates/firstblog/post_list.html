@@ -1,32 +1,25 @@
-<html>
-    <head>
-        <title>Abrar's blog</title>
-    </head>
-    <body>
-    <div>
-            <h1><a href="">Abrar's Blog</a></h1>
+{% extends 'blog/base.html' %}
+
+
+
+{% block content %}
+
+    {% for post in posts %}
+
+        <div class="post">
+
+            <div class="date">
+
+                {{ post.published_date }}
+
+            </div>
+
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+
+            <p>{{ post.text|linebreaksbr }}</p>
+
         </div>
 
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-        <div>
-            <p>{{posts}}</p>
-            <h2><a href="">My Idol </a></h2>
-            <p>Cristiano Ronaldo- CR7
-                Best in the World</p>
-        </div>
+    {% endfor %}
 
-        <div>
-            <h2><a href="">Passion</a></h2>
-            <p>Playing Soccer, Managing a world class organization</p>
-        </div>
-
-        <p>Would love to settle in england and cheer for my club</p>
-        <p>To write new rules and laws for my country</p>
-    </body>
-</html>
+{% endblock %}
