@@ -10,6 +10,7 @@ from .models import Post
 
 from .forms  import PostForm
 
+from django.contrib.auth.models import User
 
 
 def post_list(request):
@@ -38,7 +39,7 @@ def post_new(request):
 
             post = form.save(commit=False)
 
-            post.author = request.user
+            post.author = request.user if isinstance(request.user, User) else User.objects.get(username='anonymous')
 
             post.published_date = timezone.now()
 
@@ -66,7 +67,7 @@ def post_edit(request, pk):
 
             post = form.save(commit=False)
 
-            post.author = request.user
+            post.author = request.user if isinstance(request.user,User) else User.objects.get(username='anonymous')
 
             post.published_date = timezone.now()
 
@@ -78,5 +79,5 @@ def post_edit(request, pk):
 
         form = PostForm(instance=post)
 
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'firstblog/post_edit.html', {'form': form})
 
