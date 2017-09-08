@@ -15,8 +15,7 @@ from django.contrib.auth.models import User
 
 def post_list(request):
 
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')[::-1]
     return render(request, 'firstblog/post_list.html', {'posts': posts})
 
 
@@ -51,7 +50,7 @@ def post_new(request):
 
         form = PostForm()
 
-    return render(request, 'firstblog/post_edit.html', {'form': form})
+    return render(request, 'firstblog/post_new.html', {'form': form})
 
 
 
